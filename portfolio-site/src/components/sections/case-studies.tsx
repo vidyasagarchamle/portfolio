@@ -3,7 +3,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ExternalLink, ArrowUpRight, Bookmark, Lightbulb, Target, BarChart3, Users, Zap, Eye, Layers, MessageCircle, LineChart } from "lucide-react"
+import { ExternalLink, ArrowUpRight, Bookmark, Lightbulb, Target, BarChart3, Users, Zap, Eye, Layers, MessageCircle, LineChart, FileDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type ColorVariant = 'purple' | 'blue' | 'green' | 'orange' | 'pink';
@@ -20,7 +20,7 @@ const caseStudies = [
       "KPI Driven Product Optimization",
       "Cross-Functional & External Collaboration"
     ],
-    url: "https://example.com/case-study/just-dance-now",
+    pdfPath: "/case-studies/just-dance-now.pdf",
     icon: <Zap className="h-5 w-5" />,
     size: "medium",
     color: "purple" as ColorVariant
@@ -30,7 +30,7 @@ const caseStudies = [
     title: "BitClass",
     subtitle: "User Activation",
     description: "Designing user journey to activate new users through improved onboarding and engagement.",
-    url: "https://example.com/case-study/bitclass",
+    pdfPath: "/case-studies/bitclass.pdf",
     icon: <Users className="h-5 w-5" />,
     size: "medium",
     color: "blue" as ColorVariant
@@ -40,7 +40,7 @@ const caseStudies = [
     title: "inshorts",
     subtitle: "Feed Optimization",
     description: "Improving news feed through content personalization, UI enhancements, and engagement metrics.",
-    url: "https://example.com/case-study/inshorts",
+    pdfPath: "/case-studies/inshorts.pdf",
     icon: <Bookmark className="h-5 w-5" />,
     size: "medium",
     color: "pink" as ColorVariant
@@ -50,7 +50,7 @@ const caseStudies = [
     title: "Jupiter",
     subtitle: "Gamification",
     description: "Implementing game mechanics to enhance user engagement and retention.",
-    url: "https://example.com/case-study/jupiter",
+    pdfPath: "/case-studies/jupiter.pdf",
     icon: <Target className="h-5 w-5" />,
     size: "medium",
     color: "orange" as ColorVariant
@@ -60,7 +60,7 @@ const caseStudies = [
     title: "Dunzo",
     subtitle: "Increasing AOV",
     description: "Strategies to increase Average Order Value through product and UX improvements.",
-    url: "https://example.com/case-study/dunzo",
+    pdfPath: "/case-studies/dunzo.pdf",
     icon: <BarChart3 className="h-5 w-5" />,
     size: "medium",
     color: "green" as ColorVariant
@@ -70,47 +70,27 @@ const caseStudies = [
     title: "Fampay",
     subtitle: "Product Strategy",
     description: "Shifting household transaction patterns from parent-driven to kid-driven activities.",
-    url: "https://example.com/case-study/fampay",
+    pdfPath: "/case-studies/fampay.pdf",
     icon: <Lightbulb className="h-5 w-5" />,
     size: "medium",
     color: "purple" as ColorVariant
   },
   {
     id: 7,
-    title: "Tata 1MG",
-    subtitle: "Product Teardown",
-    description: "Comprehensive analysis of product features, user experience, and improvement opportunities.",
-    url: "https://example.com/case-study/tata-1mg",
-    icon: <Layers className="h-5 w-5" />,
+    title: "Slack",
+    subtitle: "Save for Later Feature",
+    description: "Improving user education and adoption of the Save for Later feature through better UX and onboarding.",
+    pdfPath: "/case-studies/slack.pdf",
+    icon: <MessageCircle className="h-5 w-5" />,
     size: "medium",
     color: "blue" as ColorVariant
   },
   {
     id: 8,
-    title: "Mudrex",
-    subtitle: "Product Teardown",
-    description: "Detailed examination of crypto investment platform with UX and feature recommendations.",
-    url: "https://example.com/case-study/mudrex",
-    icon: <Eye className="h-5 w-5" />,
-    size: "medium",
-    color: "orange" as ColorVariant
-  },
-  {
-    id: 9,
-    title: "InSAID",
-    subtitle: "Feature Design",
-    description: "Introducing a communication dashboard feature for INSAID to improve student-mentor interaction.",
-    url: "https://example.com/case-study/insaid",
-    icon: <MessageCircle className="h-5 w-5" />,
-    size: "medium",
-    color: "green" as ColorVariant
-  },
-  {
-    id: 10,
     title: "SaaSfras",
     subtitle: "Revenue Strategy",
     description: "Growth strategy to optimize revenue streams and enhance customer lifetime value.",
-    url: "https://example.com/case-study/saasfras",
+    pdfPath: "/case-studies/saasfras.pdf",
     icon: <LineChart className="h-5 w-5" />,
     size: "medium",
     color: "pink" as ColorVariant
@@ -138,7 +118,7 @@ export function CaseStudies() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-center mb-12"
+          style={{ maxWidth: '48rem', margin: '0 auto', textAlign: 'center', marginBottom: '3rem' }}
         >
           <div className="mb-2 text-sm text-primary/60 font-medium uppercase tracking-wider">
             Case Studies
@@ -162,14 +142,14 @@ export function CaseStudies() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="group"
+                style={{ display: 'block' }}
               >
                 <Link 
-                  href={study.url} 
+                  href={study.pdfPath}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={cn(
-                    "h-full w-full relative flex flex-col justify-between bg-gradient-to-b rounded-3xl p-6 border overflow-hidden transition-all duration-300",
+                    "h-full w-full relative flex flex-col justify-between bg-gradient-to-b rounded-3xl p-6 border overflow-hidden transition-all duration-300 group",
                     colorVariants[study.color],
                     randomHeight,
                     "hover:shadow-lg hover:-translate-y-0.5"
@@ -188,7 +168,10 @@ export function CaseStudies() {
                       )}>
                         {study.icon}
                       </div>
+                      <div className="flex items-center gap-2">
+                        <FileDown className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-all" />
                       <ArrowUpRight className="h-5 w-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      </div>
                     </div>
                     <h3 className="font-bold text-xl mb-1">{study.title}</h3>
                     <p className="text-sm text-foreground/70 font-medium mb-3">{study.subtitle}</p>

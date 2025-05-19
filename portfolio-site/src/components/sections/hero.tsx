@@ -115,23 +115,12 @@ export function Hero() {
                 <Button 
                   asChild 
                   size="lg" 
-                  className="group relative overflow-hidden rounded-none btn-glow shadow-sm"
+                  className="group relative bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 text-white rounded-md px-6 py-3 shadow-md hover:shadow-lg transition-all duration-200"
                 >
-                  <a href="#projects">
-                    <span className="relative z-10 flex items-center gap-2">
-                      View My Projects
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                  <a href="https://www.linkedin.com/in/vidyasagarchamle/" target="_blank" rel="noopener noreferrer">
+                    <span className="relative z-10 flex items-center gap-2 font-medium">
+                      Get in Touch
+                      <ExternalLink className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   </a>
                 </Button>
